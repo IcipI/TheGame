@@ -1,0 +1,267 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+#include <fstream>
+using namespace std;
+void Save(int HPp, int HPe, int DMGp, int DMGe, int MPp, int num, int HPpr, int XP, int Gold, int HPpm, int x, string text[5], int i, int buff[5])
+{
+	ofstream Save("Save.txt");
+	Save<<HPp<<" "<<MPp<<" "<<XP<<" "<<Gold<<" "<<HPpm;
+	Save.close();
+}
+void Die(int HPp, int HPe, int DMGp, int DMGe, int MPp, int num, int HPpr, int XP, int Gold, int HPpm, int x, string text[5], int i, int buff[5])
+{
+	cout<<"||============================================================================||";
+	cout<<"||                                                                            ||";
+	cout<<"||                 __________          ____       __________                  ||";
+	cout<<"||                |\\_________\\        |\\___\\     |\\_________\\                 ||";
+	cout<<"||                ||          \\       ||   |     ||         |                 ||";
+	cout<<"||                ||    ___    \\      \\|___|     ||    _____|                 ||";
+	cout<<"||                ||   |   \\    |     |\\___\\     ||   |__\\                    ||";
+	cout<<"||                ||   |   ||   |     ||   |     ||      |                    ||";
+	cout<<"||                ||   |__/\\|   |     ||   |     ||    __|__                  ||";
+	cout<<"||                ||   |__\\/    |     ||   |     ||   |_____\\                 ||";
+	cout<<"||                ||           /      ||   |     ||         |                 ||";
+	cout<<"||                \\|__________/       \\|___|     \\|_________|                 ||";
+	cout<<"||                                                                            ||";
+	cout<<"||                                                                            ||";
+	cout<<"||                                                                            ||";
+	cout<<"||                                                                            ||";
+	cout<<"||                                                                            ||";
+	cout<<"||                                                                            ||";
+	cout<<"||                                                                            ||";
+	cout<<"||                                                                            ||";
+	cout<<"||                                                                            ||";
+	cout<<"||                                                                            ||";
+	cout<<"|| [1] Возродиться в деревне [-1000XP] [-50% Gold]                            ||";
+	cout<<"||============================================================================||";
+	cin>>num;
+	Gold = Gold / 2;
+	XP = XP - 1000;
+	if (XP < 0) {
+		XP = 0;
+	} else {
+		cout<<"";
+	}
+	Save(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+}
+void Tavern(int HPp, int HPe, int DMGp, int DMGe, int MPp, int num, int HPpr, int XP, int Gold, int HPpm, int x, string text[5], int i, int buff[5])
+{
+	cout<<"||============================================================================||";
+	cout<<">>"<<text[x]<<"\n";
+	cout<<"||                                         | |@@X@@X@XXX@XX|    (^^) _/       ||";
+	cout<<"||                                         \\ |@X@X@X@XX@XX@|  \\/(  )          ||";
+	cout<<"||                                          \\|@XX@XX@XXX@XX|____|__|____H__H__||";
+	cout<<"||                                                     |\\ UUU          (_)(_) ||";
+	cout<<"||                        __________                   | \\____________________||";
+	cout<<"||                        \\      U _\\     |\\           | | - _  -  -  _ -- _ -||";
+	cout<<"||                        |\\______(_)\\ ___||           | | --  _-  _ -  _ - - ||";
+	cout<<"||                        ||        |||\\__\\|            \\|____________________||";
+	cout<<"||                         |         ||| ||                                   ||";
+	cout<<"||    ____H_____           |         | |  |                                   ||";
+	cout<<"||    \\  (_)   U\\     |\\                                                      ||";
+	cout<<"||    |\\_________\\ ___||                                                      ||";
+	cout<<"||    ||        |||\\__\\|                                                      ||";
+	cout<<"||     |         ||| ||                                                       ||";
+	cout<<"||     |         | |  |                                                       ||";
+	cout<<"||============================================================================||";
+	cout<<">>(HP: "<<HPp<<"/"<<HPpm<<" )"<<"(MP: "<<MPp<<" )"<<"(XP: "<<XP<<"/1000 )"<<"(Gold: "<<Gold<<" )\n";
+	cout<<"|| [1]Выпить кружечку эля [10 Gold]  [+10 HP]                                 ||";
+	cout<<"|| [2]Снять комнату       [100 Gold] [Восстанавливает всё HP]                 ||";
+	cout<<"|| [3]Поговорить с трактирщицей                                               ||";
+	cout<<"|| [4]Уйти                                                                    ||";
+	cout<<"||============================================================================||";
+	cin>>num;
+	if (num == 1) {
+		Gold = Gold - 10;
+		HPp = HPp + 10;
+		if (HPp > HPpm) {
+			HPp = HPpm;
+		} else {
+			cout<<"";
+		}
+		system("cls");
+		Tavern(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+	} else if (num == 2) {
+		Gold = Gold - 100;
+		HPp = HPpm;
+		system("cls");
+		Tavern(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+	} else if (num == 3) {
+		x = 2;
+		system("cls");
+		Tavern(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+	} else if (num == 4) {
+		system("cls");
+		Save(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+	}
+}
+void Dragon(int HPp, int HPe, int DMGp, int DMGe, int MPp, int num, int HPpr, int XP, int Gold, int HPpm, int x, string text[5], int i, int buff[5])
+{
+	cout<<"||============================================================================||";
+	cout<<">>(DRAGON: "<<HPe<<" HP)\n";
+	cout<<"||                 <>=======()                                                ||";
+	cout<<"||                (/\\___   /|\\\\          ()==========<>_                      ||";
+	cout<<"||                      \\_/ | \\\\        //|\\   _______/\\)                     ||";
+	cout<<"||                        \\_|  \\\\      // | \\_/                               ||";
+	cout<<"||                          \\|\\/|\\_   //  /\\/                                 ||";
+	cout<<"||                           (oo)\\ \\_//  /                                    ||";
+	cout<<"||                          //_/\\_\\/ /  |                                     ||";
+	cout<<"||                         @@/  |=\\  \\  |                                     ||";
+	cout<<"||                              \\_=\\_ \\ |                                     ||";
+	cout<<"||                                \\==\\ \\|\\_                                   ||";
+	cout<<"||                             __(\\===\\(  )\\                                  ||";
+	cout<<"||                            (((~) __(_/   |                                 ||";
+	cout<<"||                                 (((~) \\  /                                 ||";
+	cout<<"||                                 ______/ /                                  ||";
+	cout<<"||                                 '......'                                   ||";
+	cout<<"||============================================================================||";
+	cout<<">>(HP: "<<HPp<<"/"<<HPpm<<" )"<<"(MP: "<<MPp<<" )"<<"(XP: "<<XP<<"/1000 )"<<"(Gold: "<<Gold<<" )\n";
+	cout<<"|| [1]Мечь       [8 - 12 DMG]                                                 ||";
+	cout<<"|| [2]Огненый шар[10 - 20 DMG] [10 MP cost]                                   ||";
+	cout<<"|| [3]Молния     [30 - 50 DMG] [20 MP cost]                                   ||";
+	cout<<"|| [4]Лечение    [25 - 35 HP]  [10 MP cost]                                   ||";
+	cout<<"||============================================================================||";
+	cin>>num;
+	if (num == 1) {
+		srand(time(0));
+		DMGp=rand()%4+8;
+	} else if (num == 2) {
+		if (MPp >= 10) {
+			srand(time(0));
+			DMGp=rand()%10+10;
+			MPp = MPp - 10;
+		} else {
+			system("cls");
+			Dragon(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+		}
+	} else if (num == 3) {
+		if (MPp >= 20) {
+			srand(time(0));
+			DMGp=rand()%20+30;
+			MPp = MPp - 20;
+		} else {
+			system("cls");
+			Dragon(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+		}
+	} else if (num == 4) {
+		if (MPp >=10) {
+			srand(time(0));
+			HPpr=rand()%10+25;
+			MPp = MPp - 10;
+		} else {
+			system("cls");
+			Dragon(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+		}
+	} else if (num == 1337) {
+		DMGp = 500;
+	} else {
+		DMGp = 1;
+	}
+	DMGe=rand()%10+10;
+	HPp = HPp - DMGe;
+	HPe = HPe - DMGp;
+	HPp = HPp + HPpr;
+	if (HPp > HPpm) {
+		HPp = HPpm;
+	} else {
+		cout<<"";
+	}
+	if (HPe <= 0) {
+		XP=XP+1000;
+		Gold= Gold + 1000;
+		system("cls");
+		cout<<"YOU WIN"<<endl;
+		Save(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+	} else if (HPp <= 0) {
+		system("cls");
+		Die(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+	} else {
+		DMGp = DMGe = num = HPpr = 0;
+		system("cls");
+		Dragon(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+	}
+}
+void Town(int HPp, int HPe, int DMGp, int DMGe, int MPp, int num, int HPpr, int XP, int Gold, int HPpm, int x, string text[5], int i, int buff[5])
+{
+	cout<<"||============================================================================||";
+	cout<<">>"<<text[x]<<"\n";
+	cout<<"||                                        /   ___      /\\   _--/___________\\/ ||";
+	cout<<"||                                       /   /__/|    / /  /|--|  __   __  |  ||";
+	cout<<"||                                      /    |  ||   / /  | |  | |  | |  | |  ||";
+	cout<<"||                                     /     |__|/  / /|  | |  | | @| |__| | /||";
+	cout<<"||                  _________         /____________/ / |  | |  |_|__|______|/ ||";
+	cout<<"||               .-/         /'-.    /_____________\\/  /          --          ||";
+	cout<<"||              / /         /   /     |  __   __  |   /         ---_________  ||";
+	cout<<"||             / /         /   /      | |  | |  | |  /        --- |Гарцующий| ||";
+	cout<<"||            / /         /   /|      | | @| |__| | /       ---   |__Пони!__| ||";
+	cout<<"||           / /_________/   / |      |_|__|______|/      ---     |  '---'  | ||";
+	cout<<"||          /.-'_________'-./  /         --             ---                   ||";
+	cout<<"||            |  __   __  |   /         -- ______     ---                     ||";
+	cout<<"||            | |  | |  | |  /         -- |[][][]|   --                       ||";
+	cout<<"||            | | @| |__| | /          -- |[]____|  --                        ||";
+	cout<<"||            |_|__|______|/          --  |      | --                         ||";
+	cout<<"||============================================================================||";
+	cout<<">>(HP: "<<HPp<<"/"<<HPpm<<" )"<<"(MP: "<<MPp<<" )"<<"(XP: "<<XP<<"/1000 )"<<"(Gold: "<<Gold<<" )\n";
+	cout<<"|| [1]Зайти в таверну                  || [5] Сохранить                       ||";
+	cout<<"|| [2]Постучать в дверь дома           ||                                     ||";
+	cout<<"|| [3]Посмотреть доску объявлений      ||                                     ||";
+	cout<<"|| [4]Уйти искать приключения!         ||                                     ||";
+	cout<<"||============================================================================||";
+	cin>>num;
+	if (num == 1) {
+		x = 1;
+		system("cls");
+		Tavern(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+	} else if (num == 2) {
+		x = 3;
+		system("cls");
+		Town(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+	} else if (num == 3) {
+		x = 4;
+		system("cls");
+		Town(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+	} else if (num == 4) {
+		system("cls");
+		Dragon(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+	} else if (num == 5) {
+		system("cls");
+		Save(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+	} else {
+		system("cls");
+		Town(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+	}
+}
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	string text[5] = {
+	" ", "Хэй хэй хэй! Добро пожаловать в мою таверну!", "Я сейчас занята!", "Никто не отвечает...", "Надпись: 'В округе завёлся дракон! Берегитесь!'"
+	};
+	int HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, i;
+	int buff[5];
+	for (i = 0; i < 10; i++){
+		ifstream fin("Save.txt");
+		for (int j = 0; j < 5; j++) {
+			fin>>buff[j];
+		}
+		HPp = buff[0];
+		MPp = buff[1];
+		XP = buff[2];
+		Gold = buff[3];
+		HPpm = buff[4];
+		HPe = 1000;
+		HPpr = i = x = 0;
+		i= i - 1;
+		if (XP >= 1000) {
+			HPp = HPp +10;
+			HPpm = HPpm +10;
+			XP = 0;
+		} else {
+			cout<<"";
+		}
+		Town(HPp, HPe, DMGp, DMGe, MPp, num, HPpr, XP, Gold, HPpm, x, text, i, buff);
+	}
+	return 0;
+}
